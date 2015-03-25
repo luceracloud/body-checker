@@ -1,15 +1,12 @@
-// Checks
-//
-// string
-// array
-// object
-// integer
-// number
-// boolean
-// null
-// undefined
-// assigned
-// any
+/**
+ * body-checker
+ * A simple tool to protect your API against bad request parameters
+ *
+ * @param {Object} 	 body 		request body
+ * @param {Object} 	 options 	configuration parmaters
+ * @param {Function} cb 		callback function
+ *
+ */
 
 var check = require('check-types');
 
