@@ -20,7 +20,6 @@ module.exports = function(body, options, cb) {
 		options_count = Object.keys(options).length;
 
 	if(req_count !== options_count) {
-		console.log('Wrong number of params passed to function');
 		return cb(new Error('Wrong number of params passed to function'));
 	}
 
@@ -31,8 +30,7 @@ module.exports = function(body, options, cb) {
 
 		// Check for Required
 		if(options[key].required && !body[key]) {
-			console.log('Missing required Parameter');
-			return cb(new Error('Missing required Parameter'));
+			return cb(new Error('Missing required parameter ' + key));
 		}
 
 		// Optional default handler
@@ -44,8 +42,7 @@ module.exports = function(body, options, cb) {
 		if(options[key].type !== 'any') {
 
 			if(check[options[key].type](body[key]) === false) {
-				console.log('Error in param types');
-				return cb(new Error('Error in param types'));
+				return cb(new Error('Expected "' + key + '" to be type ' + options[key].type + ', instead found ' + typeof body[key]));
 			}
 
 		}
@@ -57,13 +54,11 @@ module.exports = function(body, options, cb) {
 	// Ensure all passed params are legal
 	for(var p in body) {
 		if(valid_keys.indexOf(p) === -1) {
-			console.log('Invalid paramater provided');
-			return cb(new Error('Invalid parameter provided'));
+			return cb(new Error('Illegal parameter "' + p + '" provided'));
 		}
 	}
 
 	// All is good
-	console.log(body);
 	return cb(null, body);
 
 };

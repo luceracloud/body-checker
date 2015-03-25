@@ -1,14 +1,26 @@
 {
   "name": "body-checker",
   "version": "0.1.0",
-  "description": "Checks the types of request body parameters",
+  "description": "A simple tool to protect your API against bad request parameters",
   "main": "index.js",
+  "repository": "https://github.com/luceracloud/body-checker",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
+  "keywords": [
+    "strong-params",
+    "strong params",
+    "express",
+    "koa",
+    "request body",
+    "type checker"
+  ],
   "author": "Randy Lebeau",
   "license": "MIT",
   "dependencies": {
     "check-types": "^3.1.1"
+  },
+  "devDependencies": {
+    "jest-cli": "^0.4.0"
   }
 }
