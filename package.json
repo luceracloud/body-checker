@@ -1,11 +1,12 @@
 {
   "name": "body-checker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple tool to protect your API against bad request parameters",
   "main": "index.js",
   "repository": "https://github.com/luceracloud/body-checker",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "jest"
   },
   "keywords": [
     "strong-params",

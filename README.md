@@ -90,3 +90,7 @@ module.exports = function(req, res, next) {
 }
 
 ```
+
+## Tests
+
+`npm test`
