@@ -13,7 +13,7 @@
 
 var check = require('check-types');
 
-module.exports = function(body, options) {
+module.exports = function(body, options, cb) {
 
 	// Check for extra params
 	var req_count = Object.keys(body).length,
@@ -21,7 +21,7 @@ module.exports = function(body, options) {
 
 	if(req_count !== options_count) {
 		console.log('Wrong number of params passed to function');
-		return new Error('Wrong number of params passed to function');
+		return cb(new Error('Wrong number of params passed to function'));
 	}
 
 	var valid_keys = [];
@@ -29,13 +29,10 @@ module.exports = function(body, options) {
 	// Check types
 	for(var key in options) {
 
-		// Return for any type
-		if(options[key].type === 'any') return;
-
 		// Check for Required
 		if(options[key].required && !body[key]) {
 			console.log('Missing required Parameter');
-			return new Error('Missing required Parameter');
+			return cb(new Error('Missing required Parameter'));
 		}
 
 		// Optional default handler
@@ -43,28 +40,31 @@ module.exports = function(body, options) {
 			body[key] = options[key].default;
 		}
 
-		// Check types
-		if(check[options[key].type](body[key]) === false) {
-			console.log('Error in param types');
-			return new Error('Error in param types');
-		};
+		// Check types for all but "any"
+		if(options[key].type !== 'any') {
+
+			if(check[options[key].type](body[key]) === false) {
+				console.log('Error in param types');
+				return cb(new Error('Error in param types'));
+			}
+
+		}
 
 		valid_keys.push(key);
 
 	}
 
 	// Ensure all passed params are legal
-
 	for(var p in body) {
 		if(valid_keys.indexOf(p) === -1) {
 			console.log('Invalid paramater provided');
-			return new Error('Invalid parameter provided');
+			return cb(new Error('Invalid parameter provided'));
 		}
 	}
 
 	// All is good
 	console.log(body);
-	return body;
+	return cb(null, body);
 
 };
 

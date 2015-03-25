@@ -9,7 +9,7 @@ var body = {
 	tea: 'time'
 };
 
-checker(body, {
+var c = checker(body, {
 	name: {
 		type: 'string',
 		default: 'A default',
@@ -35,4 +35,9 @@ checker(body, {
 		default: 'rl@lucera.com',
 		required: false
 	}
+
+}, function(err, body) {
+
+
+
 });
