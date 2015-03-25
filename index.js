@@ -20,7 +20,7 @@ module.exports = function(body, options, cb) {
 		options_count = Object.keys(options).length;
 
 	if(req_count !== options_count) {
-		return cb(new Error('Wrong number of params passed to function'));
+		return cb(new Error(req_count + ' parameters passed, but method requires ' + options_count));
 	}
 
 	var valid_keys = [];

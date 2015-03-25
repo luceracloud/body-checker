@@ -21,7 +21,7 @@ describe('parameter count', function() {
 		}, function(err, body) {
 
 			expect(err).toBeDefined();
-			expect(err.message).toEqual('Wrong number of params passed to function');
+			expect(err.message).toEqual('2 parameters passed, but method requires 1');
 			expect(body).toBeUndefined();
 
 		});
