@@ -14,7 +14,7 @@ check([body to validate], [configuration options], [callback]);
 ```
 
 #### Body to validate
-This is the object or request parameters (`req.body` in express) that you want to validate.
+This is the request object (`req.body` in express) that you want to validate.
 Currently we only support shallow objects, but if there is an overwhelming need for deep objects, let us know in the issues and we will implement deep validation.
 
 #### Configuration options
@@ -44,7 +44,7 @@ Type is a required parameter.  If you don't care what type it is, you can set ty
 - **any**:		bypasses type checking
 
 #### Callback
-Callback is a traditional callback that passes back a detailed error message or the final `req.body` object.  The library passes back detailed errors for debugging, but allows you to send your own generic error to the client.  This will prevent phishing attacks. See example below.
+Callback is a traditional callback(err, data) function.  It will pass back detailed errors for debugging or the final `req.body` object.  This allows you to send your own generic error to the client to prevent phishing attacks. See example below.
 
 ## Examples
 
