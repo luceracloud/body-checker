@@ -1,6 +1,10 @@
 # Body Checker
 > A simple tool to protect your API against bad request parameters
 
+[![NPM](https://nodei.co/npm/body-checker.png?downloads=true&stars=true)](https://nodei.co/npm/body-checker/)
+
+[![Build Status](https://travis-ci.org/luceracloud/body-checker.svg?branch=master)](https://travis-ci.org/luceracloud/body-checker)
+
 ## Installation
 
 `npm install body-checker`
