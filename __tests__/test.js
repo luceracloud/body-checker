@@ -21,7 +21,7 @@ describe('parameter count', function() {
 		}, function(err, body) {
 
 			expect(err).toBeDefined();
-			expect(err.message).toEqual('2 parameters passed, but method requires 1');
+			expect(err.message).toEqual('Illegal parameter "rogue" provided');
 			expect(body).toBeUndefined();
 
 		});
@@ -60,6 +60,30 @@ describe('required parameters', function() {
 
 	});
 
+	it('Should NOT fail on an undefined required parameter', function() {
+
+		var body = {
+			name: 'Randy'
+		};
+
+		check(body, {
+			name: {
+				type: 'string',
+				required: true
+			},
+			email: {
+				type: 'string',
+				required: false
+			}
+		}, function(err, body) {
+
+			expect(body).toBeDefined();
+			expect(err).toBeNull();
+			expect(body.name).toEqual('Randy');
+			expect(body.email).toBeUndefined();
+		});
+
+	});
 });
 
 describe('default parameters', function() {
@@ -116,6 +140,7 @@ describe('type check', function() {
 				required: true
 			}
 		}, function(err, body) {
+
 			expect(err).toBeDefined();
 			expect(err.message).toEqual('Expected "id" to be type number, instead found string');
 			expect(body).toBeUndefined();
