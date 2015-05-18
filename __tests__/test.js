@@ -6,14 +6,14 @@ describe('parameter count', function() {
 
 	var check = require('body-checker');
 
-	it('Should reject the wrong number of parameters', function() {
+	xit('Should reject the wrong number of parameters', function() {
 
-		var body = {
+		var reqBody = {
 			name: 'Randy',
 			rogue: 'DROP users'
 		};
 
-		check(body, {
+		check(reqBody, {
 			name: {
 				type: 'string',
 				required: true
@@ -30,18 +30,83 @@ describe('parameter count', function() {
 
 });
 
+describe('undefined params', function() {
+
+	var check = require('body-checker');
+
+	xit('Should not return undefined key values when leys are missing', function() {
+
+		var reqBody = {
+			name: "Randy"
+		};
+
+		var strongParams = { name: { type: 'string', required: true},
+							address: { type: 'string', required: false}};
+
+		check(reqBody, strongParams, function(err, body) {
+
+			// console.log(err);
+			// console.log(body);
+			// console.log(Object.keys(body).length);
+
+			expect(err).toBeNull();
+			expect(body).toBeDefined();
+			expect(Object.keys(body).length).toEqual(1);
+
+		});
+
+	});
+
+	it('Should handle empty object when strong params without keys', function() {
+
+		var reqBody = {};
+
+		var strongParams = {};
+
+		check(reqBody, strongParams, function(err, body) {
+
+			console.log(err);
+			console.log(body);
+			console.log(Object.keys(body).length);
+
+			expect(err).toBeNull();
+			expect(body).toBeDefined();
+			expect(Object.keys(body).length).toEqual(0);
+
+		});
+
+	});
+
+	it('Should handle bad object as strong params without keys', function() {
+
+		var reqBody = { test: 'should fail'};
+
+		var strongParams = {};
+
+		check(reqBody, strongParams, function(err, body) {
+
+			expect(err).toBeDefined();
+			expect(err.message).toEqual('Illegal parameter "test" provided');
+			expect(body).toBeUndefined();
+
+		});
+
+	});
+
+});
+
 describe('required parameters', function() {
 
 	var check = require('body-checker');
 
-	it('Should fail on an undefined required parameter', function() {
+	xit('Should fail on an undefined required parameter', function() {
 
-		var body = {
+		var reqBody = {
 			name: 'Randy',
 			email: ''
 		};
 
-		check(body, {
+		check(reqBody, {
 			name: {
 				type: 'string',
 				required: true
@@ -60,13 +125,13 @@ describe('required parameters', function() {
 
 	});
 
-	it('Should NOT fail on an undefined required parameter', function() {
+	xit('Should NOT fail on an undefined required parameter', function() {
 
-		var body = {
+		var reqBody = {
 			name: 'Randy'
 		};
 
-		check(body, {
+		check(reqBody, {
 			name: {
 				type: 'string',
 				required: true
@@ -90,14 +155,14 @@ describe('default parameters', function() {
 
 	var check = require('body-checker');
 
-	it('Should set the default on an undefined optional parameter', function() {
+	xit('Should set the default on an undefined optional parameter', function() {
 
-		var body = {
+		var reqBody = {
 			name: 'Randy',
 			email: ''
 		};
 
-		check(body, {
+		check(reqBody, {
 			name: {
 				type: 'string',
 				required: true
@@ -123,14 +188,14 @@ describe('type check', function() {
 
 	var check = require('body-checker');
 
-	it('Should fail on type error', function() {
+	xit('Should fail on type error', function() {
 
-		var body = {
+		var reqBody = {
 			name: 'Randy',
 			id: '1'
 		};
 
-		check(body, {
+		check(reqBody, {
 			name: {
 				type: 'string',
 				required: true
@@ -155,15 +220,15 @@ describe('illegal parameter', function() {
 
 	var check = require('body-checker');
 
-	it('Should fail on illegal parameter', function(done) {
+	xit('Should fail on illegal parameter', function(done) {
 
-		var body = {
+		var reqBody = {
 			name: 'Randy',
 			email: '',
 			evil: 'attack'
 		};
 
-		check(body, {
+		check(reqBody, {
 			name: {
 				type: 'string',
 				required: true
@@ -194,9 +259,9 @@ describe('valid parameters', function() {
 
 	var check = require('body-checker');
 
-	it('Should return the body if all is good', function() {
+	xit('Should return the body if all is good', function() {
 
-		var body = {
+		var reqBody = {
 			name: 'Randy',
 			id: 1,
 			price: 2.2,
@@ -204,7 +269,7 @@ describe('valid parameters', function() {
 			email: ''
 		};
 
-		check(body, {
+		check(reqBody, {
 			name: {
 				type: 'string',
 				default: 'A default',

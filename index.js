@@ -12,7 +12,6 @@ var check = require('check-types');
 
 module.exports = function(body, options, cb) {
 
-
 	var valid_keys = Object.keys(options);
 
 	// Ensure all passed params are legal
@@ -30,7 +29,7 @@ module.exports = function(body, options, cb) {
 		}
 
 		// Optional default handler
-		if(!options[key].required && !body[key]) {
+		if(!options[key].required && !body[key] && options[key].default) {
 			body[key] = options[key].default;
 		}
 
