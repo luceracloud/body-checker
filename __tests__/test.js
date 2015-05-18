@@ -45,10 +45,6 @@ describe('undefined params', function() {
 
 		check(reqBody, strongParams, function(err, body) {
 
-			// console.log(err);
-			// console.log(body);
-			// console.log(Object.keys(body).length);
-
 			expect(err).toBeNull();
 			expect(body).toBeDefined();
 			expect(Object.keys(body).length).toEqual(1);
@@ -64,10 +60,6 @@ describe('undefined params', function() {
 		var strongParams = {};
 
 		check(reqBody, strongParams, function(err, body) {
-
-			console.log(err);
-			console.log(body);
-			console.log(Object.keys(body).length);
 
 			expect(err).toBeNull();
 			expect(body).toBeDefined();
