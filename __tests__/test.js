@@ -6,7 +6,7 @@ describe('parameter count', function() {
 
 	var check = require('body-checker');
 
-	xit('Should reject the wrong number of parameters', function() {
+	it('Should reject the wrong number of parameters', function() {
 
 		var reqBody = {
 			name: 'Randy',
@@ -34,7 +34,7 @@ describe('undefined params', function() {
 
 	var check = require('body-checker');
 
-	xit('Should not return undefined key values when leys are missing', function() {
+	it('Should not return undefined key values when leys are missing', function() {
 
 		var reqBody = {
 			name: "Randy"
@@ -91,7 +91,7 @@ describe('required parameters', function() {
 
 	var check = require('body-checker');
 
-	xit('Should fail on an undefined required parameter', function() {
+	it('Should fail on an undefined required parameter', function() {
 
 		var reqBody = {
 			name: 'Randy',
@@ -117,7 +117,7 @@ describe('required parameters', function() {
 
 	});
 
-	xit('Should NOT fail on an undefined required parameter', function() {
+	it('Should NOT fail on an undefined required parameter', function() {
 
 		var reqBody = {
 			name: 'Randy'
@@ -147,7 +147,7 @@ describe('default parameters', function() {
 
 	var check = require('body-checker');
 
-	xit('Should set the default on an undefined optional parameter', function() {
+	it('Should set the default on an undefined optional parameter', function() {
 
 		var reqBody = {
 			name: 'Randy',
@@ -180,7 +180,7 @@ describe('type check', function() {
 
 	var check = require('body-checker');
 
-	xit('Should fail on type error', function() {
+	it('Should fail on type error', function() {
 
 		var reqBody = {
 			name: 'Randy',
@@ -212,7 +212,7 @@ describe('illegal parameter', function() {
 
 	var check = require('body-checker');
 
-	xit('Should fail on illegal parameter', function(done) {
+	it('Should fail on illegal parameter', function(done) {
 
 		var reqBody = {
 			name: 'Randy',
@@ -251,7 +251,7 @@ describe('valid parameters', function() {
 
 	var check = require('body-checker');
 
-	xit('Should return the body if all is good', function() {
+	it('Should return the body if all is good', function() {
 
 		var reqBody = {
 			name: 'Randy',
