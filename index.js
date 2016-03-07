@@ -24,7 +24,7 @@ module.exports = function(body, options, cb) {
 	for(var key in options) {
 
 		// Check for Required
-		if(options[key].required && !body[key]) {
+		if(options[key].required && !body[key] + '') {
 			return cb(new Error('Missing required parameter ' + key));
 		}
 

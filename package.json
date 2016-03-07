@@ -1,6 +1,6 @@
 {
   "name": "body-checker",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A simple tool to protect your API against bad request parameters",
   "main": "index.js",
   "repository": "https://github.com/luceracloud/body-checker",
