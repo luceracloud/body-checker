@@ -28,8 +28,7 @@ module.exports = function(body, options, cb) {
 			switch(options[key].type) {
 				case 'number':
 				case 'integer':
-					let isZero = check.zero(body[key]);
-					if(isZero) break;
+					if(check.zero(body[key])) break;
 				default:
 					return cb(new Error('Missing required parameter ' + key));
 			}
