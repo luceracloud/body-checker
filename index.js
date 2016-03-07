@@ -24,8 +24,15 @@ module.exports = function(body, options, cb) {
 	for(var key in options) {
 
 		// Check for Required
-		if(options[key].required && !body[key] + '') {
-			return cb(new Error('Missing required parameter ' + key));
+		if(options[key].required && !body[key]) {
+			switch(options[key].type) {
+				case 'number':
+				case 'integer':
+					let isZero = check.zero(body[key]);
+					if(isZero) break;
+				default:
+					return cb(new Error('Missing required parameter ' + key));
+			}
 		}
 
 		// Optional default handler
